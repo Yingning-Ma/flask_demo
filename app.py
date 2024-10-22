@@ -31,8 +31,8 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 os.environ["OPENAI_BASE_URL"] = 'https://api.bianxie.ai/v1'
 os.environ["OPENAI_API_KEY"] = 'sk-FEDzYSgWNKkHgc7labPUIfiFPpI3RZ1Wd7lR6fg2yZ1nNefP'
 os.makedirs("conversation_history", exist_ok=True)
-persist_directory = "./parentDB_mice"
-with open("mice_docstore.pkl", "rb") as file:
+persist_directory = "./parentDB"
+with open("docstore.pkl", "rb") as file:
     store_dict = pickle.load(file)
 
 app = Flask(__name__)
@@ -77,7 +77,7 @@ class BasicChatbot:
     def setup_chain(self):
         try:
             db = Chroma(
-                 collection_name="mice",
+                 collection_name="product",
                  embedding_function=self.embeddings,
                  persist_directory=persist_directory
                  )
