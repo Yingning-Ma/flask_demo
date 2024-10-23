@@ -28,8 +28,7 @@ from langchain.retrievers import ParentDocumentRetriever
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable
-os.environ["OPENAI_BASE_URL"] = 'https://api.bianxie.ai/v1'
-os.environ["OPENAI_API_KEY"] = 'sk-FEDzYSgWNKkHgc7labPUIfiFPpI3RZ1Wd7lR6fg2yZ1nNefP'
+
 os.makedirs("conversation_history", exist_ok=True)
 persist_directory = "./parentDB"
 with open("docstore.pkl", "rb") as file:
@@ -68,7 +67,7 @@ class BasicChatbot:
         self.chat_model = ChatOpenAI(
             model = 'gpt-3.5-turbo',
             max_tokens=1024,
-            temperature = 0.1,
+            temperature = 0.3,
             top_p = 0.1
             )
         self.embeddings = HuggingFaceEmbeddings(model_name = "sentence-transformers/all-MiniLM-L6-v2")
